@@ -1,0 +1,4 @@
+pvessel_article_homepage:
+    resource: "@PvesselArticleBundle/Controller/"
+    type:     annotation
+    prefix:   /
