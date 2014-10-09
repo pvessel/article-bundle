@@ -31,6 +31,7 @@ class Article
      *      max = 50,
      *      maxMessage = "Title cannot be longer than {{ limit }} characters long"
      * )
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -38,21 +39,20 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="introduction", type="text")
+     * @ORM\Column(name="introduction", type="text", nullable=true)
      */
     private $introduction;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     private $path;
 
@@ -173,6 +173,11 @@ class Article
         return $this->image;
     }
 
+    /**
+     * Get Absolute Path
+     *
+     * @return string 
+     */
     public function getAbsolutePath()
     {
         return null === $this->path
@@ -180,6 +185,11 @@ class Article
             : $this->getUploadRootDir().'/'.$this->path;
     }
 
+    /**
+     * Get Path for Web
+     *
+     * @return string 
+     */
     public function getWebPath()
     {
         return null === $this->path
